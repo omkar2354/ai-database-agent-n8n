@@ -50,6 +50,8 @@ AI Agent (LLM)
    │
    ▼
 MySQL Database
+<img width="1920" height="1080" alt="workflow" src="https://github.com/user-attachments/assets/b79af020-3c9b-4170-b2ed-f9045f4e4966" />
+
 
 The AI agent acts as a controller that interprets user queries and decides which tool to use.
 
