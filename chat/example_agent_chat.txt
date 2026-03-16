@@ -1,0 +1,92 @@
+User:
+Show all customers from the customers table who are located in France.
+
+AI Agent:
+I queried the database and found the following customers located in France:
+
+Atelier graphique — Nantes
+
+La Rochelle Gifts — Nantes
+
+Saveley & Henriot, Co. — Lyon
+
+Daedalus Designs Imports — Lille
+
+La Corne D'abondance, Co. — Paris
+
+Alpha Cognac — Toulouse
+
+Lyon Souveniers — Paris
+
+Auto Associés & Cie. — Versailles
+
+Marseille Mini Autos — Marseille
+
+Reims Collectables — Reims
+
+These records were retrieved from the customers table where country = 'France'.
+
+User:
+Add a new employee with the following details:
+
+employeeNumber: 1113
+firstName: Rahul
+lastName: Sharma
+extension: x5555
+email: rahul.sharma@classicmodelcars.com
+
+officeCode: 1
+reportsTo: 1143
+jobTitle: Sales Rep
+
+AI Agent:
+The new employee record has been successfully inserted into the employees table.
+
+Inserted record:
+
+employeeNumber: 1113
+firstName: Rahul
+lastName: Sharma
+extension: x5555
+email: rahul.sharma@classicmodelcars.com
+
+officeCode: 1
+reportsTo: 1143
+jobTitle: Sales Rep
+
+The employee is now stored in the database.
+
+User:
+Update the email address of employee 1113 to rahul.ai.engineer@classicmodelcars.com
+.
+
+AI Agent:
+The employee record has been updated successfully.
+
+Updated field:
+
+employeeNumber: 1113
+new email: rahul.ai.engineer@classicmodelcars.com
+
+The change has been saved in the employees table.
+
+User:
+Delete the employee with employeeNumber 1113 from the employees table.
+
+AI Agent:
+The employee record has been successfully deleted from the database.
+
+Deleted employee:
+
+employeeNumber: 1113
+name: Rahul Sharma
+
+The record has been removed from the employees table.
+
+User:
+Confirm that employee 1113 no longer exists in the database.
+
+AI Agent:
+I checked the employees table and there are no records with employeeNumber = 1113.
+
+This confirms that the employee was deleted successfully.

@@ -1,0 +1,306 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0ad551b9-4b7c-44d0-b90b-8692ecb6110e",
+      "name": "When chat message received",
+      "webhookId": "959bf965-5b48-420c-b081-36a2c3c7c32b"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "50ce41bd-1d49-47b3-bdd3-019e67fe3f00",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "id": "6b1ecfe1-4bad-48b0-a07c-5a9c81cf3f36",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "customers",
+          "mode": "list",
+          "cachedResultName": "customers"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        368,
+        208
+      ],
+      "id": "e719fd20-3446-43c8-a465-6b65258e593a",
+      "name": "Select rows from a table in MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "Gvj4A6TtOwAEULHS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "employees",
+          "mode": "list",
+          "cachedResultName": "employees"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "employeeNumber",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', ``, 'string') }}"
+            },
+            {
+              "column": "lastName",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values1_Value', ``, 'string') }}"
+            },
+            {
+              "column": "firstName",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values2_Value', ``, 'string') }}"
+            },
+            {
+              "column": "extension",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values3_Value', ``, 'string') }}"
+            },
+            {
+              "column": "email",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values4_Value', ``, 'string') }}"
+            },
+            {
+              "column": "officeCode",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values5_Value', ``, 'string') }}"
+            },
+            {
+              "column": "reportsTo",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values6_Value', ``, 'string') }}"
+            },
+            {
+              "column": "jobTitle",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values7_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        784,
+        192
+      ],
+      "id": "45ac2b37-da05-4b2c-83ef-4064747c7687",
+      "name": "Insert rows in a table in MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "Gvj4A6TtOwAEULHS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "f9ce10b0-3be0-4b7f-9f3c-74c81bef3a13",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "w3kSL0yO8h1r3aPr",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "table": {
+          "__rl": true,
+          "value": "employees",
+          "mode": "list",
+          "cachedResultName": "employees"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "employeeNumber",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', `Employee number of the employee that should be deleted.`, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        512,
+        176
+      ],
+      "id": "01b944bd-40f9-4fc8-8107-64bd31aed301",
+      "name": "Delete table or rows in MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "Gvj4A6TtOwAEULHS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "employees",
+          "mode": "list",
+          "cachedResultName": "employees"
+        },
+        "columnToMatchOn": "employeeNumber",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        640,
+        240
+      ],
+      "id": "17b503ad-797f-4fbe-987d-c14b0b58ad5e",
+      "name": "Update rows in a table in MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "Gvj4A6TtOwAEULHS",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table in MySQL": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table in MySQL": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete table or rows in MySQL": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table in MySQL": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "7ec61a06-0542-4f27-9e63-1989289ed221",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "251af98d98ff7bfd30b479e74f6b7139d0489d6cc40e60430c7e061b5d04dd81"
+  },
+  "id": "qXHtLB7Qcq25B9t2",
+  "tags": []
+}
